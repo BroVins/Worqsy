@@ -1,0 +1,6 @@
+<?php
+namespace App\Enums;
+enum TaskStatus: string {
+    case ASSIGNED='ASSIGNED'; case IN_PROGRESS='IN_PROGRESS'; case DONE_SUBMITTED='DONE_SUBMITTED';
+    case REVIEWING='REVIEWING'; case REVISION='REVISION'; case RESUBMITTED='RESUBMITTED'; case APPROVED='APPROVED';
+}
