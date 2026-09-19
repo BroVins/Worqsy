@@ -33,3 +33,107 @@ body{margin:0;min-height:100vh}a{color:inherit;text-decoration:none}button,input
 .empty{text-align:center;padding:48px 20px;color:#667085}.muted{color:var(--muted)}.flex{display:flex}.items-center{align-items:center}.justify-between{justify-content:space-between}.gap-2{gap:8px}.gap-3{gap:12px}.mt-2{margin-top:8px}.mt-3{margin-top:12px}.mt-4{margin-top:16px}.mb-0{margin-bottom:0}.w-full{width:100%}
 @media(max-width:1000px){.app-shell{grid-template-columns:78px minmax(0,1fr)}.sidebar{padding:20px 10px}.brand span,.nav-link .label,.sidebar-bottom .user-copy,.nav-section{display:none}.brand{justify-content:center}.nav-link{justify-content:center}.grid-4,.grid-3{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:720px){.app-shell{display:block}.sidebar{display:none}.topbar{padding:0 16px}.content{padding:18px}.grid-4,.grid-3,.grid-2,.form-grid{grid-template-columns:1fr}.page-head{flex-direction:column}.auth-page{grid-template-columns:1fr}.auth-hero{display:none}.kv{grid-template-columns:1fr}.workspace-switcher{min-width:150px}}
+
+/* =====================================
+   WORQSY UI POLISH V2
+===================================== */
+
+
+/* Card interaction */
+.card{
+    transition:.2s ease;
+}
+
+
+.card:hover{
+    transform:translateY(-2px);
+    box-shadow:
+    0 12px 30px rgba(16,24,40,.08);
+}
+
+
+
+/* Project card */
+.project-card{
+    cursor:pointer;
+    transition:.2s ease;
+}
+
+
+.project-card:hover{
+    transform:translateY(-4px);
+}
+
+
+
+/* Button polish */
+.btn{
+    transition:.2s ease;
+}
+
+
+.btn-primary{
+    box-shadow:
+    0 2px 6px rgba(64,92,245,.25);
+}
+
+
+.btn-primary:hover{
+    transform:translateY(-1px);
+}
+
+
+
+/* Better active menu */
+.nav-link.active{
+    box-shadow:
+    inset 3px 0 0 #405cf5;
+}
+
+
+
+/* Workflow component */
+.workflow{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+}
+
+
+.workflow-item{
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+}
+
+
+.workflow-dot{
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background:#405cf5;
+    margin-top:5px;
+}
+
+
+.workflow-line{
+    height:32px;
+    width:2px;
+    background:#e5e7eb;
+    margin-left:5px;
+}
+
+
+
+/* Better mobile card */
+@media(max-width:720px){
+
+    .card{
+        border-radius:12px;
+    }
+
+    .page-title{
+        font-size:24px;
+    }
+
+}

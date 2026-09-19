@@ -1,15 +1,100 @@
 @extends('layouts.app')
-@section('title',$project->name.' · Board')
+
+@section('title','Project Board')
+
 @section('content')
-<div class="page-head"><div><div class="project-code">{{ $project->project_code }}</div><h1 class="page-title">{{ $project->name }}</h1></div>@can('createTask',$project)<a class="btn btn-primary" href="{{ route('tasks.create',$project) }}">+ New Task</a>@endcan</div>
-<x-project-tabs :project="$project" active="board" />
-<div class="board mt-4">
-@foreach(['ASSIGNED','IN_PROGRESS','DONE_SUBMITTED','REVIEWING','REVISION','RESUBMITTED','APPROVED'] as $status)
-<div class="board-col"><div class="board-title">{{ str_replace('_',' ',$status) }} · {{ $tasks->where('status.value',$status)->count() }}</div>
-@foreach($tasks->filter(fn($t)=>$t->status->value===$status) as $task)
-<a class="task-card" href="{{ route('tasks.show',$task) }}"><div class="task-title">{{ $task->title }}</div><div class="task-meta">{{ $task->task_code }} · {{ $task->assignees->pluck('name')->join(', ') ?: 'Unassigned' }}</div><div class="task-meta">{{ $task->due_date?->format('d M Y') ?? 'No due date' }}</div></a>
-@endforeach
+
+<div class="page-head">
+
+<div>
+    <div class="muted" style="font-size:13px">
+        {{ $project->project_code }}
+    </div>
+
+    <h1 class="page-title">
+        {{ $project->name }}
+    </h1>
+
+    <p class="page-subtitle">
+        Visual task management board for project workflow.
+    </p>
 </div>
-@endforeach
+
+
+<a href="{{ route('projects.show',$project) }}"
+class="btn btn-secondary">
+Back to Project
+</a>
+
 </div>
+
+
+
+<div class="board">
+
+
+@php
+$statuses = [
+    'TODO' => 'To Do',
+    'IN_PROGRESS' => 'In Progress',
+    'REVIEWING' => 'Review',
+    'REVISION' => 'Revision',
+    'APPROVED' => 'Completed'
+];
+@endphp
+
+
+
+@foreach($statuses as $key=>$label)
+
+<div class="board-col">
+
+
+<div class="board-title">
+{{ $label }}
+</div>
+
+
+
+@foreach($tasks->filter(fn($task)=>$task->status->value === $key) as $task)
+
+
+<a href="{{ route('tasks.show',$task) }}"
+class="task-card">
+
+
+<div class="task-title">
+{{ $task->title }}
+</div>
+
+
+<div class="task-meta">
+
+{{ $task->due_date?->format('d M Y') ?? 'No deadline' }}
+
+</div>
+
+
+<div style="margin-top:8px">
+
+<x-badge :value="$task->status"/>
+
+</div>
+
+
+</a>
+
+
+@endforeach
+
+
+
+</div>
+
+@endforeach
+
+
+</div>
+
+
 @endsection

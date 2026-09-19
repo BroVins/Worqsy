@@ -33,8 +33,8 @@ return new class extends Migration {
             $table->foreignUuid('user_id')->constrained()->cascadeOnDelete();
             $table->string('resource_type', 80);
             $table->uuid('resource_id');
-            $table->timestamp('first_access_at');
-            $table->timestamp('last_access_at');
+            $table->timestamp('first_access_at')->nullable();
+            $table->timestamp('last_access_at')->nullable();
             $table->unsignedBigInteger('access_count')->default(1);
             $table->unique(['user_id','resource_type','resource_id']);
             $table->index(['resource_type','resource_id']);
